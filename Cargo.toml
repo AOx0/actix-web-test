@@ -1,0 +1,14 @@
+[package]
+name = "actix-test2"
+version = "0.1.0"
+authors = ["AOx0 <50227494+AOx0@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-files = "0.5.0"
+actix-web = "3.3.2"
+dotenv = "0.15.0"
+serde = "1.0.126"
+serde_json = "1.0.64" 

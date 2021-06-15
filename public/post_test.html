@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="./style.css">
+    <title>Actix Web</title>
+    <script type="text/javascript" src="./jquery-3.6.0.js"></script>
+    <script>
+        function sbmit () {
+            console.log("ll")
+            $.ajax({
+                type: "POST",
+                url: "/extrapolar",
+                data: {
+                    cc1: $('#cc1').val(),
+                    cc2: $('#cc2').val()
+                },
+                success: function (data) {
+                    console.log(data)
+                    if (data.redirect) {
+                        window.location.href = data;
+                    } else {
+                        $("#r").replaceWith(`<p>${data}</p>`)
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="content">
+    <div>
+        <h1>Extrapolador</h1>
+
+        <label for='cc1'>CC 1: </label><input type='text' id='cc1' value='' maxlength="16">
+        <br/>
+        <label for='cc2'>CC 2: </label><input type='text' id='cc2' value='' maxlength="16">
+        <br/>
+        <br/>
+        <label id='generar-extra' onclick="sbmit()">Generate</label>
+        <br/>
+        <br/>
+        <label id='r'> </label>
+    </div>
+</body>
+</html>

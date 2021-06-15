@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../style.css" />
+		<title>Actix Web</title>
+	</head>
+<body>
+<h1>Actix Web</h1>
+<p>by AOX0</p>
+
+<h2>Otros temas</h2>
+
+<p>Actix web es muy poderoso pero no se compara a lo que es con herramientas que lo complementan y hacen que todo sea más sencillo de administrar.</p>
+
+<h3><code>css</code></h3>
+
+<p>Para tener <code>JetBrains Mono</code> de manera rápida en el CSS se puede agregar la siguiente linea de código:</p>
+
+<pre><code class="code-highlighted code-css"><span class="syntax-all syntax-keyword">@import</span> <span class="syntax-all syntax-constant">url</span>(<span class="syntax-all syntax-string">&quot;https://dev-cats.github.io/code-snippets/JetBrainsMono.css&quot;</span>);</code></pre>
+
+<h3><code>actix-files</code></h3>
+
+<p>Descrito en cates.io como: <em>”Static file serving for Actix Web.”</em></p>
+
+<p>Brinda la función de respuesta automática del request a un URL de acuerdo a los archivos existentes en el folder especificado as root.</p>
+
+<pre><code class="code-highlighted code-rust"><span class="syntax-all syntax-keyword">use</span> actix_web<span class="syntax-all syntax-keyword">::</span>{App, HttpServer};
+<span class="syntax-all syntax-keyword">use</span> actix_files<span class="syntax-all syntax-keyword">::</span>Files;
+
+
+#[actix_web::main]
+async <span class="syntax-all syntax-keyword">fn</span> <span class="syntax-all syntax-entity">main</span>() -&gt; std::io::<span class="syntax-all syntax-keyword">Result</span>&lt;()&gt; {
+    HttpServer<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">new</span>(<span class="syntax-all syntax-keyword">||</span> {
+        App<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">new</span>()
+			<span class="syntax-all syntax-comment">// Aquí se concatena el &#39;servicio&#39; que mapea el directorio &#39;public&#39; como &#39;/&#39; de la página e indica qué archivo es el index.html.</span>
+			<span class="syntax-all syntax-comment">// Con esto hecho si accedemos a &#39;localhost/test/&#39;, si la carpeta existe y contiene un index.html se hace la respuesta automáticamente.</span>
+            .<span class="syntax-all syntax-entity">service</span>(Files<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">new</span>(<span class="syntax-all syntax-string">&quot;/&quot;</span>, <span class="syntax-all syntax-string">&quot;./public/&quot;</span>).<span class="syntax-all syntax-entity">index_file</span>(<span class="syntax-all syntax-string">&quot;index.html&quot;</span>))
+    })
+    .<span class="syntax-all syntax-entity">bind</span>(<span class="syntax-all syntax-string">&quot;0.0.0.0:80&quot;</span>)?	<span class="syntax-all syntax-comment">// Escucha cualquier dirección ipv4 como 127.0.0.1 o 192.168.1.67, localhost, etcétera en el puerto 80.</span>
+    .<span class="syntax-all syntax-entity">bind</span>(<span class="syntax-all syntax-string">&quot;[::0]:80&quot;</span>)?		<span class="syntax-all syntax-comment">// Escucha cualquier dirección ipv6 como http://[2806:105e:14:2230:1034:fe50:33aa:1fcf]</span>
+    .<span class="syntax-all syntax-entity">run</span>()
+    .await
+}</code></pre>
+
+<h3><code>dotenv</code></h3>
+
+<p>Para escribir variables que luego son leídas en un archivo llamado <em>.env</em></p>
+
+<p>Se llama de la siguiente forma:</p>
+
+<pre><code class="code-highlighted code-rust"><span class="syntax-all syntax-keyword">fn</span> <span class="syntax-all syntax-entity">main</span>() {
+	dotenv<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">dotenv</span>().<span class="syntax-all syntax-entity">ok</span>();
+	<span class="syntax-all syntax-keyword">let</span> variable <span class="syntax-all syntax-keyword">=</span> std<span class="syntax-all syntax-keyword">::</span>env<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">var</span>(<span class="syntax-all syntax-string">&quot;DATABSE_URL&quot;</span>).<span class="syntax-all syntax-entity">unwrap</span>();
+
+}</code></pre>
+
+<h3><code>Diesel</code></h3>
+
+<p>Es un comunicador? Con bases de datos.</p>
+
+<p>Para instalar el CLI:</p>
+
+<pre><code class="code-highlighted code-rust">cargo install diesel_cli</code></pre>
+
+<h2>Post</h2>
+
+<pre><code class="code-highlighted code-rust"><span class="syntax-all syntax-comment">// Cargo.toml</span>
+actix<span class="syntax-all syntax-keyword">-</span>files <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-string">&quot;0.5.0&quot;</span>
+actix<span class="syntax-all syntax-keyword">-</span>web <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-string">&quot;3.3.2&quot;</span>
+dotenv <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-string">&quot;0.15.0&quot;</span>
+serde <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-string">&quot;1.0.126&quot;</span>
+serde_json <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-string">&quot;1.0.64&quot;</span></code></pre>
+
+<pre><code class="code-highlighted code-html"><span class="syntax-all syntax-comment">&lt;!-- index.html --&gt;</span>
+&lt;<span class="syntax-all syntax-tag">head</span>&gt;
+    &lt;<span class="syntax-all syntax-tag">link</span> <span class="syntax-all syntax-entity">rel</span>=<span class="syntax-all syntax-string">&quot;stylesheet&quot;</span> <span class="syntax-all syntax-entity">href</span>=<span class="syntax-all syntax-string">&quot;./style.css&quot;</span>&gt;
+    &lt;<span class="syntax-all syntax-tag">title</span>&gt;Actix Web&lt;/<span class="syntax-all syntax-tag">title</span>&gt;
+&lt;/<span class="syntax-all syntax-tag">head</span>&gt;
+&lt;<span class="syntax-all syntax-tag">body</span> <span class="syntax-all syntax-entity">class</span>=<span class="syntax-all syntax-string">&quot;content&quot;</span>&gt;
+&lt;<span class="syntax-all syntax-tag">iframe</span> <span class="syntax-all syntax-entity">name</span>=<span class="syntax-all syntax-string">&quot;hiddenFrame&quot;</span> <span class="syntax-all syntax-entity">width</span>=<span class="syntax-all syntax-string">&quot;0&quot;</span> <span class="syntax-all syntax-entity">height</span>=<span class="syntax-all syntax-string">&quot;0&quot;</span> <span class="syntax-all syntax-entity">border</span>=<span class="syntax-all syntax-string">&quot;0&quot;</span> <span class="syntax-all syntax-entity">style</span>=<span class="syntax-all syntax-string">&quot;display: none;&quot;</span>&gt;&lt;/<span class="syntax-all syntax-tag">iframe</span>&gt;
+<span class="syntax-all syntax-comment">&lt;!--
+</span><span class="syntax-all syntax-comment">	To read the server response:
+</span><span class="syntax-all syntax-comment">	
+</span><span class="syntax-all syntax-comment">		document.querySelector(&quot;body &gt; iframe&quot;).contentDocument.querySelector(&quot;body &gt; pre&quot;).innerHTML
+</span><span class="syntax-all syntax-comment">--&gt;</span>
+&lt;<span class="syntax-all syntax-tag">form</span> <span class="syntax-all syntax-entity">method</span>=<span class="syntax-all syntax-string">&quot;POST&quot;</span> <span class="syntax-all syntax-entity">action</span>=<span class="syntax-all syntax-string">&quot;/extrapolar&quot;</span>  <span class="syntax-all syntax-entity">id</span>=<span class="syntax-all syntax-string">&quot;content&quot;</span> <span class="syntax-all syntax-entity">class</span>=<span class="syntax-all syntax-string">&quot;content&quot;</span> <span class="syntax-all syntax-entity">target</span>=<span class="syntax-all syntax-string">&quot;hiddenFrame&quot;</span>&gt;
+    &lt;<span class="syntax-all syntax-tag">div</span>&gt;
+        &lt;<span class="syntax-all syntax-tag">h1</span>&gt;Extrapolador&lt;/<span class="syntax-all syntax-tag">h1</span>&gt;
+
+        &lt;<span class="syntax-all syntax-tag">label</span> <span class="syntax-all syntax-entity">for</span>=<span class="syntax-all syntax-string">&#39;cc1&#39;</span>&gt;CC 1: &lt;/<span class="syntax-all syntax-tag">label</span>&gt;&lt;<span class="syntax-all syntax-tag">input</span> <span class="syntax-all syntax-entity">type</span>=<span class="syntax-all syntax-string">&#39;text&#39;</span> <span class="syntax-all syntax-entity">id</span>=<span class="syntax-all syntax-string">&#39;cc1&#39;</span> <span class="syntax-all syntax-entity">name</span>=<span class="syntax-all syntax-string">&#39;cc1&#39;</span> <span class="syntax-all syntax-entity">value</span>=<span class="syntax-all syntax-string">&#39;&#39;</span> <span class="syntax-all syntax-entity">maxlength</span>=<span class="syntax-all syntax-string">&quot;16&quot;</span>&gt;
+        &lt;/<span class="syntax-all syntax-tag">br</span>&gt;
+        &lt;<span class="syntax-all syntax-tag">label</span> <span class="syntax-all syntax-entity">for</span>=<span class="syntax-all syntax-string">&#39;cc2&#39;</span>&gt;CC 2: &lt;/<span class="syntax-all syntax-tag">label</span>&gt;&lt;<span class="syntax-all syntax-tag">input</span> <span class="syntax-all syntax-entity">type</span>=<span class="syntax-all syntax-string">&#39;text&#39;</span> <span class="syntax-all syntax-entity">id</span>=<span class="syntax-all syntax-string">&#39;cc2&#39;</span> <span class="syntax-all syntax-entity">name</span>=<span class="syntax-all syntax-string">&#39;cc2&#39;</span> <span class="syntax-all syntax-entity">value</span>=<span class="syntax-all syntax-string">&#39;&#39;</span> <span class="syntax-all syntax-entity">maxlength</span>=<span class="syntax-all syntax-string">&quot;16&quot;</span>&gt;
+        &lt;/<span class="syntax-all syntax-tag">br</span>&gt;
+        &lt;/<span class="syntax-all syntax-tag">br</span>&gt;
+        &lt;<span class="syntax-all syntax-tag">button</span> <span class="syntax-all syntax-entity">id</span>=<span class="syntax-all syntax-string">&#39;generar-extra&#39;</span> <span class="syntax-all syntax-entity">type</span>=<span class="syntax-all syntax-string">&quot;submit&quot;</span> <span class="syntax-all syntax-entity">onclick</span>=<span class="syntax-all syntax-string">&quot;genetareExtra()&quot;</span>&gt;Generate&lt;/<span class="syntax-all syntax-tag">button</span>&gt;
+        &lt;/<span class="syntax-all syntax-tag">br</span>&gt;
+        &lt;/<span class="syntax-all syntax-tag">br</span>&gt;
+        &lt;<span class="syntax-all syntax-tag">label</span> <span class="syntax-all syntax-entity">id</span>=<span class="syntax-all syntax-string">&#39;r&#39;</span>&gt; &lt;/<span class="syntax-all syntax-tag">label</span>&gt;
+    &lt;/<span class="syntax-all syntax-tag">div</span>&gt;
+&lt;/<span class="syntax-all syntax-tag">form</span>&gt;
+&lt;/<span class="syntax-all syntax-tag">body</span>&gt;</code></pre>
+
+<pre><code class="code-highlighted code-rust"><span class="syntax-all syntax-comment">// models.rs</span>
+<span class="syntax-all syntax-keyword">use</span> serde<span class="syntax-all syntax-keyword">::</span>{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize,Debug)]
+<span class="syntax-all syntax-keyword">pub</span> <span class="syntax-all syntax-keyword">struct</span> <span class="syntax-all syntax-entity">ModeloCCGen</span> {
+    <span class="syntax-all syntax-keyword">pub</span> cc1: <span class="syntax-all syntax-keyword">String</span>,
+    <span class="syntax-all syntax-keyword">pub</span> cc2: <span class="syntax-all syntax-keyword">String</span>
+}</code></pre>
+
+<pre><code class="code-highlighted code-rust"><span class="syntax-all syntax-comment">// handlers.rs</span>
+<span class="syntax-all syntax-keyword">use</span> actix_web<span class="syntax-all syntax-keyword">::</span>HttpResponse;
+<span class="syntax-all syntax-keyword">use</span> <span class="syntax-all syntax-keyword">crate::</span>models<span class="syntax-all syntax-keyword">::</span>ModeloCCGen;
+<span class="syntax-all syntax-keyword">use</span> actix_web<span class="syntax-all syntax-keyword">::</span>web<span class="syntax-all syntax-keyword">::</span>Form;
+
+
+<span class="syntax-all syntax-keyword">pub</span> <span class="syntax-all syntax-keyword">fn</span> <span class="syntax-all syntax-entity">lol</span>(query: Form&lt;ModeloCCGen&gt;)  -&gt; HttpResponse  {
+    <span class="syntax-all syntax-keyword">let</span> query <span class="syntax-all syntax-keyword">=</span> query.<span class="syntax-all syntax-entity">into_inner</span>();
+    <span class="syntax-all syntax-keyword">let</span> ModeloCCGen {cc1, cc2} <span class="syntax-all syntax-keyword">=</span> query;
+    <span class="syntax-all syntax-constant">println!</span>(<span class="syntax-all syntax-string">&quot;{}</span><span class="syntax-all syntax-escape">\n</span><span class="syntax-all syntax-string">{}&quot;</span>, cc1, cc2);
+
+    HttpResponse<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-constant">Ok</span>()
+        .<span class="syntax-all syntax-entity">body</span>(<span class="syntax-all syntax-string">&quot;dsfsdf&quot;</span>)
+}</code></pre>
+
+<pre><code class="code-highlighted code-rust"><span class="syntax-all syntax-comment">// main.rs</span>
+<span class="syntax-all syntax-keyword">use</span> actix_web<span class="syntax-all syntax-keyword">::</span>{web, App, HttpServer};
+<span class="syntax-all syntax-keyword">use</span> actix_files<span class="syntax-all syntax-keyword">::</span>Files;
+
+<span class="syntax-all syntax-keyword">mod</span> models;
+<span class="syntax-all syntax-keyword">mod</span> handlers;
+
+#[actix_web::main]
+async <span class="syntax-all syntax-keyword">fn</span> <span class="syntax-all syntax-entity">main</span>() -&gt; std::io::<span class="syntax-all syntax-keyword">Result</span>&lt;()&gt; {
+    HttpServer<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">new</span>(<span class="syntax-all syntax-keyword">||</span> {
+        App<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">new</span>()
+            .<span class="syntax-all syntax-entity">service</span>(web<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">resource</span>(<span class="syntax-all syntax-string">&quot;/extrapolar&quot;</span>).<span class="syntax-all syntax-entity">route</span>(web<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">post</span>().<span class="syntax-all syntax-entity">to</span>(handlers<span class="syntax-all syntax-keyword">::</span>lol)))
+            .<span class="syntax-all syntax-entity">service</span>(Files<span class="syntax-all syntax-keyword">::</span><span class="syntax-all syntax-entity">new</span>(<span class="syntax-all syntax-string">&quot;/&quot;</span>, <span class="syntax-all syntax-string">&quot;./public/&quot;</span>).<span class="syntax-all syntax-entity">index_file</span>(<span class="syntax-all syntax-string">&quot;index.html&quot;</span>))
+    })
+    .<span class="syntax-all syntax-entity">bind</span>(<span class="syntax-all syntax-string">&quot;0.0.0.0:80&quot;</span>)?
+    .<span class="syntax-all syntax-entity">bind</span>(<span class="syntax-all syntax-string">&quot;[::0]:80&quot;</span>)?
+    .<span class="syntax-all syntax-entity">run</span>()
+    .await
+}</code></pre>
+
+</body>
+</html>
+
