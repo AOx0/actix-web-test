@@ -1,4 +1,3 @@
-use diesel::dsl::max;
 use crate::prelude::*;
 use crate::diesel_stuff::schema::*;
 use diesel::{Insertable, Queryable};

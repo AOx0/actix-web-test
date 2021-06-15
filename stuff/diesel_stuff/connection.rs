@@ -26,5 +26,4 @@ pub fn connect() -> DbConnection {
 
 pub fn init() {
     lazy_static::initialize(&POOL);
-    let conn = connect();
 }
