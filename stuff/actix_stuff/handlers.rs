@@ -1,8 +1,15 @@
-use crate::models::CC;
+
+use diesel::dsl::max;
+use crate::actix_stuff::models::CC;
 use actix_web::HttpResponse;
 use actix_web::web::{self, Form};
 
 use serde::{Serialize, Deserialize};
+
+use crate::diesel_stuff::models::*;
+use crate::diesel_stuff::schema::*;
+use crate::prelude::*;
+
 
 fn ccgen_post(query: Form<CC>)  -> HttpResponse  {
     let query = query.into_inner();
@@ -10,10 +17,8 @@ fn ccgen_post(query: Form<CC>)  -> HttpResponse  {
     println!("{}\n{}", cc1, cc2);
     //Do something with your data
 
-    #[derive(Serialize, Deserialize)]
-    struct Respuesta<'a> {
-        pub l : &'a str
-    }
+
+    let max_id = ExtraInfo::insert(&cc1, &cc2);
 
     HttpResponse::Ok()
         .body("jasda")
