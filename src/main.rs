@@ -1,8 +1,8 @@
 mod models;
 mod handlers;
 
-use actix_files::Files;
 use handlers::routes;
+use actix_files::Files;
 use actix_web::{App, HttpServer};
 
 #[actix_web::main]

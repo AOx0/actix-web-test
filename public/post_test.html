@@ -6,7 +6,6 @@
     <script type="text/javascript" src="./jquery-3.6.0.js"></script>
     <script>
         function sbmit () {
-            console.log("ll")
             $.ajax({
                 type: "POST",
                 url: "/extrapolar",
@@ -15,7 +14,6 @@
                     cc2: $('#cc2').val()
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.redirect) {
                         window.location.href = data;
                     } else {
@@ -29,15 +27,9 @@
 <body class="content">
     <div>
         <h1>Extrapolador</h1>
-
-        <label for='cc1'>CC 1: </label><input type='text' id='cc1' value='' maxlength="16">
-        <br/>
-        <label for='cc2'>CC 2: </label><input type='text' id='cc2' value='' maxlength="16">
-        <br/>
-        <br/>
-        <label id='generar-extra' onclick="sbmit()">Generate</label>
-        <br/>
-        <br/>
+        <label for='cc1'>CC 1: </label><input type='text' id='cc1' value='' maxlength="16"><br/>
+        <label for='cc2'>CC 2: </label><input type='text' id='cc2' value='' maxlength="16"><br/><br/>
+        <label id='generar-extra' onclick="sbmit()">Generate</label><br/><br/>
         <label id='r'> </label>
     </div>
 </body>
