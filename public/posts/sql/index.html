@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../style.css" />
+	</head>
+<body>
+<pre><code class="code-highlighted code-sql"><span class="syntax-all syntax-comment">/*
+</span><span class="syntax-all syntax-comment"> Navicat Data Transfer
+</span><span class="syntax-all syntax-comment">
+</span><span class="syntax-all syntax-comment"> Source Server         : MariaDB
+</span><span class="syntax-all syntax-comment"> Source Server Type    : MariaDB
+</span><span class="syntax-all syntax-comment"> Source Server Version : 100419
+</span><span class="syntax-all syntax-comment"> Source Host           : 192.168.64.2:3306
+</span><span class="syntax-all syntax-comment"> Source Schema         : universidad
+</span><span class="syntax-all syntax-comment">
+</span><span class="syntax-all syntax-comment"> Target Server Type    : MariaDB
+</span><span class="syntax-all syntax-comment"> Target Server Version : 100419
+</span><span class="syntax-all syntax-comment"> File Encoding         : 65001
+</span><span class="syntax-all syntax-comment">
+</span><span class="syntax-all syntax-comment"> Date: 16/06/2021 15:27:49
+</span><span class="syntax-all syntax-comment">*/</span>
+
+<span class="syntax-all syntax-keyword">SET</span> NAMES utf8mb4;
+<span class="syntax-all syntax-keyword">SET</span> FOREIGN_KEY_CHECKS <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-constant">0</span>;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for carrera
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`carrera`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">carrera</span>` (
+  <span class="syntax-all syntax-string">`id_carrera`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">4</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> AUTO_INCREMENT,
+  <span class="syntax-all syntax-string">`descripcion`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">30</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`area`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">1</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_carrera`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB AUTO_INCREMENT<span class="syntax-all syntax-keyword">=</span><span class="syntax-all syntax-constant">2</span> DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for curso
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`curso`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">curso</span>` (
+  <span class="syntax-all syntax-string">`id_curso`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">5</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> AUTO_INCREMENT,
+  <span class="syntax-all syntax-string">`nombre`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`temario`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`tutorial`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_curso`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB AUTO_INCREMENT<span class="syntax-all syntax-keyword">=</span><span class="syntax-all syntax-constant">4</span> DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for grupo
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`grupo`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">grupo</span>` (
+  <span class="syntax-all syntax-string">`id_grupo`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">2</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> AUTO_INCREMENT,
+  <span class="syntax-all syntax-string">`id_curso`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">5</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`horario`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">17</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`fecha_inicio`</span> <span class="syntax-all syntax-keyword">timestamp</span> <span class="syntax-all syntax-keyword">NULL</span> DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`fecha_fin`</span> <span class="syntax-all syntax-keyword">timestamp</span> <span class="syntax-all syntax-keyword">NULL</span> DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`cupo`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">2</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> DEFAULT <span class="syntax-all syntax-constant">0</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_grupo`</span>,<span class="syntax-all syntax-string">`id_curso`</span>),
+  KEY <span class="syntax-all syntax-string">`id_curso`</span> (<span class="syntax-all syntax-string">`id_curso`</span>),
+  KEY <span class="syntax-all syntax-string">`id_grupo`</span> (<span class="syntax-all syntax-string">`id_grupo`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`id_curso`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_curso`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`curso`</span> (<span class="syntax-all syntax-string">`id_curso`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for inscripcion
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`inscripcion`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">inscripcion</span>` (
+  <span class="syntax-all syntax-string">`id_inscripcion`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">10</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> AUTO_INCREMENT,
+  <span class="syntax-all syntax-string">`id_grupo`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">2</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`id_curso`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">5</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`id_persona`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">9</span>) unsigned zerofill <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`calificacion`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">2</span>) unsigned DEFAULT <span class="syntax-all syntax-constant">0</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_inscripcion`</span>),
+  KEY <span class="syntax-all syntax-string">`fk_id_curso_grupo`</span> (<span class="syntax-all syntax-string">`id_curso`</span>,<span class="syntax-all syntax-string">`id_grupo`</span>),
+  KEY <span class="syntax-all syntax-string">`fk_id_persona`</span> (<span class="syntax-all syntax-string">`id_persona`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`fk_id_curso_grupo`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_curso`</span>, <span class="syntax-all syntax-string">`id_grupo`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`grupo`</span> (<span class="syntax-all syntax-string">`id_curso`</span>, <span class="syntax-all syntax-string">`id_grupo`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`fk_id_persona`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_persona`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`usuario`</span> (<span class="syntax-all syntax-string">`id_persona`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for otros_usuario
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`otros_usuario`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">otros_usuario</span>` (
+  <span class="syntax-all syntax-string">`id_persona`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">9</span>) unsigned zerofill <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`id_login`</span> <span class="syntax-all syntax-keyword">char</span>(<span class="syntax-all syntax-constant">15</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`tel2`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">15</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`persona_emerg`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">40</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`dele_muni`</span> <span class="syntax-all syntax-keyword">char</span>(<span class="syntax-all syntax-constant">40</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`cp`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">6</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`tipo_sanguineo`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">1</span>) unsigned DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`fecha_nacimiento`</span> <span class="syntax-all syntax-keyword">timestamp</span> <span class="syntax-all syntax-keyword">NOT NULL</span> DEFAULT <span class="syntax-all syntax-constant">current_timestamp</span>() <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-keyword">UPDATE</span> <span class="syntax-all syntax-constant">current_timestamp</span>(),
+  <span class="syntax-all syntax-string">`observaciones`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">15</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_login`</span>),
+  UNIQUE KEY <span class="syntax-all syntax-string">`idx_id_login`</span> (<span class="syntax-all syntax-string">`id_login`</span>) USING BTREE,
+  UNIQUE KEY <span class="syntax-all syntax-string">`idx_id_persona`</span> (<span class="syntax-all syntax-string">`id_persona`</span>) USING BTREE,
+  KEY <span class="syntax-all syntax-string">`idx_tipo_sang`</span> (<span class="syntax-all syntax-string">`tipo_sanguineo`</span>) USING BTREE,
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`id_persona`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_persona`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`usuario`</span> (<span class="syntax-all syntax-string">`id_persona`</span>) <span class="syntax-all syntax-keyword">ON DELETE CASCADE</span> <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-keyword">UPDATE</span> CASCADE,
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`tipo_sang`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`tipo_sanguineo`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`tipo_sanguineo`</span> (<span class="syntax-all syntax-string">`tipo_sanguineo`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for tarea_usuario
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`tarea_usuario`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">tarea_usuario</span>` (
+  <span class="syntax-all syntax-string">`id_tarea_usuario`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">10</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> AUTO_INCREMENT,
+  <span class="syntax-all syntax-string">`id_inscripcion`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">10</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`id_tarea`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">3</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`archivo`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`status`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">1</span>) unsigned DEFAULT <span class="syntax-all syntax-constant">0</span>,
+  <span class="syntax-all syntax-string">`comentarios`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`fecha_entrega`</span> <span class="syntax-all syntax-keyword">timestamp</span> <span class="syntax-all syntax-keyword">NULL</span> DEFAULT <span class="syntax-all syntax-string">&#39;0000-00-00 00:00:00&#39;</span> <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-keyword">UPDATE</span> <span class="syntax-all syntax-constant">current_timestamp</span>(),
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_tarea_usuario`</span>),
+  KEY <span class="syntax-all syntax-string">`fk_tarea_inscripcion`</span> (<span class="syntax-all syntax-string">`id_inscripcion`</span>),
+  KEY <span class="syntax-all syntax-string">`fk_tarea_inscripcion2`</span> (<span class="syntax-all syntax-string">`id_tarea`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`fk_tarea_inscripcion`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_inscripcion`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`inscripcion`</span> (<span class="syntax-all syntax-string">`id_inscripcion`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`fk_tarea_inscripcion2`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_tarea`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`tareas_programadas`</span> (<span class="syntax-all syntax-string">`id_tarea`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for tareas_programadas
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`tareas_programadas`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">tareas_programadas</span>` (
+  <span class="syntax-all syntax-string">`id_curso`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">5</span>) unsigned DEFAULT <span class="syntax-all syntax-keyword">NULL</span> COMMENT <span class="syntax-all syntax-string">&#39;Null = ya no existe el curso&#39;</span>,
+  <span class="syntax-all syntax-string">`archivo`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`id_tarea`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">3</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span> AUTO_INCREMENT,
+  <span class="syntax-all syntax-string">`fecha_agregada`</span> <span class="syntax-all syntax-keyword">timestamp</span> <span class="syntax-all syntax-keyword">NOT NULL</span> DEFAULT <span class="syntax-all syntax-string">&#39;0000-00-00 00:00:00&#39;</span> <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-keyword">UPDATE</span> <span class="syntax-all syntax-constant">current_timestamp</span>(),
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_tarea`</span>) USING BTREE,
+  KEY <span class="syntax-all syntax-string">`id_curso`</span> (<span class="syntax-all syntax-string">`id_curso`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`tareas_programadas_ibfk_1`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_curso`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`curso`</span> (<span class="syntax-all syntax-string">`id_curso`</span>) <span class="syntax-all syntax-keyword">ON DELETE</span> <span class="syntax-all syntax-keyword">SET</span> <span class="syntax-all syntax-keyword">NULL</span> <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-keyword">UPDATE</span> CASCADE
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB AUTO_INCREMENT<span class="syntax-all syntax-keyword">=</span><span class="syntax-all syntax-constant">16</span> DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for tipo_sanguineo
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`tipo_sanguineo`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">tipo_sanguineo</span>` (
+  <span class="syntax-all syntax-string">`tipo_sanguineo`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">1</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`descripcion`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">15</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`tipo_sanguineo`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Table structure for usuario
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TABLE</span> IF EXISTS <span class="syntax-all syntax-string">`usuario`</span>;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TABLE</span> `<span class="syntax-all syntax-entity">usuario</span>` (
+  <span class="syntax-all syntax-string">`id_persona`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">9</span>) unsigned zerofill <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`id_carrera`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">4</span>) unsigned <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`nombre`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">20</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`apellido_p`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">20</span>) <span class="syntax-all syntax-keyword">NOT NULL</span>,
+  <span class="syntax-all syntax-string">`apellido_m`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">20</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`direccion`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">100</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`tel`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">15</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`correo`</span> <span class="syntax-all syntax-keyword">varchar</span>(<span class="syntax-all syntax-constant">50</span>) DEFAULT <span class="syntax-all syntax-keyword">NULL</span>,
+  <span class="syntax-all syntax-string">`interno`</span> <span class="syntax-all syntax-keyword">int</span>(<span class="syntax-all syntax-constant">1</span>) <span class="syntax-all syntax-keyword">NOT NULL</span> DEFAULT <span class="syntax-all syntax-constant">0</span>,
+  <span class="syntax-all syntax-keyword">PRIMARY KEY</span> (<span class="syntax-all syntax-string">`id_persona`</span>),
+  KEY <span class="syntax-all syntax-string">`id_carrera`</span> (<span class="syntax-all syntax-string">`id_carrera`</span>),
+  <span class="syntax-all syntax-keyword">CONSTRAINT</span> <span class="syntax-all syntax-string">`id_carrera`</span> <span class="syntax-all syntax-keyword">FOREIGN KEY</span> (<span class="syntax-all syntax-string">`id_carrera`</span>) <span class="syntax-all syntax-keyword">REFERENCES</span> <span class="syntax-all syntax-string">`carrera`</span> (<span class="syntax-all syntax-string">`id_carrera`</span>)
+) ENGINE<span class="syntax-all syntax-keyword">=</span>InnoDB DEFAULT CHARSET<span class="syntax-all syntax-keyword">=</span>utf8mb4;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Triggers structure for table grupo
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TRIGGER</span> IF EXISTS <span class="syntax-all syntax-string">`asignar_entrega`</span>;
+delimiter ;;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TRIGGER</span> `<span class="syntax-all syntax-entity">asignar_entrega</span>` BEFORE INSERT <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-string">`grupo`</span> FOR EACH ROW <span class="syntax-all syntax-keyword">BEGIN</span>
+<span class="syntax-all syntax-keyword">SET</span> <span class="syntax-all syntax-constant">NEW</span>.<span class="syntax-all syntax-constant">fecha_inicio</span> <span class="syntax-all syntax-keyword">=</span> NOW();
+<span class="syntax-all syntax-keyword">SET</span> <span class="syntax-all syntax-constant">NEW</span>.<span class="syntax-all syntax-constant">fecha_fin</span> <span class="syntax-all syntax-keyword">=</span>  ADDDATE(NOW(),<span class="syntax-all syntax-constant">15</span>);
+END
+;;
+delimiter ;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Triggers structure for table tarea_usuario
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TRIGGER</span> IF EXISTS <span class="syntax-all syntax-string">`asignar_fecha`</span>;
+delimiter ;;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TRIGGER</span> `<span class="syntax-all syntax-entity">asignar_fecha</span>` BEFORE INSERT <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-string">`tarea_usuario`</span> FOR EACH ROW <span class="syntax-all syntax-keyword">BEGIN</span>
+	<span class="syntax-all syntax-keyword">SET</span> <span class="syntax-all syntax-constant">NEW</span>.<span class="syntax-all syntax-constant">fecha_entrega</span> <span class="syntax-all syntax-keyword">=</span> NOW();
+END
+;;
+delimiter ;
+
+<span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-comment">-- Triggers structure for table tareas_programadas
+</span><span class="syntax-all syntax-comment">-- ----------------------------
+</span><span class="syntax-all syntax-keyword">DROP</span> <span class="syntax-all syntax-keyword">TRIGGER</span> IF EXISTS <span class="syntax-all syntax-string">`timestamp`</span>;
+delimiter ;;
+<span class="syntax-all syntax-keyword">CREATE</span> <span class="syntax-all syntax-keyword">TRIGGER</span> `<span class="syntax-all syntax-entity">timestamp</span>` BEFORE INSERT <span class="syntax-all syntax-keyword">ON</span> <span class="syntax-all syntax-string">`tareas_programadas`</span> FOR EACH ROW <span class="syntax-all syntax-keyword">BEGIN</span>
+
+<span class="syntax-all syntax-keyword">SET</span> <span class="syntax-all syntax-constant">NEW</span>.<span class="syntax-all syntax-constant">fecha_agregada</span> <span class="syntax-all syntax-keyword">=</span> NOW();
+
+END
+;;
+delimiter ;
+
+<span class="syntax-all syntax-keyword">SET</span> FOREIGN_KEY_CHECKS <span class="syntax-all syntax-keyword">=</span> <span class="syntax-all syntax-constant">1</span>;</code></pre>
+
+</body>
+</html>
+
