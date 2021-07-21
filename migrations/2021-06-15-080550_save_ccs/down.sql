@@ -1,2 +1,2 @@
 -- This file should undo anything in `up.sql`
-DROP TABLE "extra_info";
+DROP TABLE "public"."extra_info";

@@ -1,18 +1,18 @@
-#[macro_use]
-extern crate diesel;
+/// Diesel support
+#[macro_use] extern crate diesel;
 
-pub mod prelude {
-    pub use crate::actix_stuff::handlers::routes;
-    pub use crate::diesel_stuff::connection::{DbConnection, init, connect};
-}
+/// Used from the main function
+pub use crate::connection::init;
+pub use crate::handlers::routes;
 
-pub mod actix_stuff {
-    pub mod handlers;
-    pub mod models;   
-}
+mod handlers;
+mod models;
+mod connection;
+mod schema;
 
-pub mod diesel_stuff {
-    pub mod connection;
-    pub mod models;
-    pub mod schema;
+mod useful {
+    pub use crate::connection::connect;
+    pub use crate::schema::*; // Re-export schema models
+    pub use crate::diesel::*; // Re-export macros
+    pub use crate::*;
 }
