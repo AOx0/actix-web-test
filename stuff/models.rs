@@ -1,6 +1,7 @@
 use crate::useful::*;
 use serde::{Serialize, Deserialize};
 
+// The struct is used to transform a POST into Rust types and also to insert it to the table
 #[derive(Serialize, Deserialize, Insertable, Debug)]
 #[table_name= "extra_info"]
 pub struct ExtraInfo {
